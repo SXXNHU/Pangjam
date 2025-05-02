@@ -1,19 +1,22 @@
 package like_lion.pangjam.service;
 
 import like_lion.pangjam.domain.Location;
+import like_lion.pangjam.domain.LocationReview;
 import like_lion.pangjam.dto.location.LocationResponseDto;
 import like_lion.pangjam.repository.LocationRepository;
 import like_lion.pangjam.repository.LocationReviewRepository;
 import like_lion.pangjam.utility.LocationConverter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class LocationService {
 
-    private LocationRepository locationRepository;
-    private LocationReviewRepository locationReviewRepository;
+    private final LocationRepository locationRepository;
+    private final LocationReviewRepository locationReviewRepository;
 
     //전체 리스트 조회
     public LocationResponseDto getAllLocation(){
@@ -21,14 +24,16 @@ public class LocationService {
         return LocationConverter.toLocationResponseDTO(locations);
     }
 
-    /*
-    //카테고리별 조회
+    //상세정보 조회
+    public LocationResponseDto.Detail getLocationDetail(int locationId){
+        Location location = locationRepository.findById(locationId).orElse(null);
 
-    //이름으로 조회
-    public LocationResponseDto getLocationByName(String name){
-        List<Location> locations = locationRepository.findAllByName(name);
-        return DtoMapper.toLocationResponseDTO(locations);
+        List<LocationReview> locationReviews = locationReviewRepository.findTop5ByLocation_LocationIdOrderByCreatedAtDesc(locationId);
+
+        return LocationResponseDto.Detail.from(location,locationReviews);
     }
+
+    /*
 
     // 상세 정보 조회
     public LocationResponseDto getLocationDetail(int locationId){
