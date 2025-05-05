@@ -1,6 +1,13 @@
-package like_lion.pangjam.dto;
+package like_lion.pangjam.dto.locationReview;
 
-public class LocationReviewResponseDTO {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter @Builder
+@NoArgsConstructor @AllArgsConstructor
+public class LocationReviewResponseDto {
 
     private int rating;
     private String content;
