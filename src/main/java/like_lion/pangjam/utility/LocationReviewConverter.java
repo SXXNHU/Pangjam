@@ -1,10 +1,25 @@
 package like_lion.pangjam.utility;
 
+import like_lion.pangjam.domain.Location;
 import like_lion.pangjam.domain.LocationReview;
+import like_lion.pangjam.dto.locationReview.LocationReviewRequestDto;
 import like_lion.pangjam.dto.locationReview.LocationReviewResponseDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LocationReviewConverter {
-    public static LocationReviewResponseDto toDto(LocationReview locationReview) {
+
+    public static LocationReview toEntity(LocationReviewRequestDto requestDto, Location location) {
+        return LocationReview.builder()
+                .nickname(NicknameGenerator.generateNickname())
+                .location(location)
+                .content(requestDto.getContent())
+                .rating(requestDto.getRating())
+                .createdAt(requestDto.getCreatedAt())
+                .build();
+    }
+
+    public static LocationReviewResponseDto toLocationReviewResponseDto(LocationReview locationReview) {
         return LocationReviewResponseDto.builder()
                 .rating(locationReview.getRating())
                 .content(locationReview.getContent())
