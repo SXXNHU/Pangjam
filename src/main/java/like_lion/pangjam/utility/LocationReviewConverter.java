@@ -11,6 +11,7 @@ public class LocationReviewConverter {
 
     public static LocationReview toEntity(LocationReviewRequestDto requestDto, Location location) {
         return LocationReview.builder()
+                .locationReviewId(requestDto.getLocationId())
                 .nickname(NicknameGenerator.generateNickname())
                 .location(location)
                 .content(requestDto.getContent())
@@ -21,6 +22,7 @@ public class LocationReviewConverter {
 
     public static LocationReviewResponseDto toLocationReviewResponseDto(LocationReview locationReview) {
         return LocationReviewResponseDto.builder()
+                .locationReviewId(locationReview.getLocationReviewId())
                 .rating(locationReview.getRating())
                 .content(locationReview.getContent())
                 .nickname(locationReview.getNickname())
