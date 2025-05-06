@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @Getter @Builder
 @NoArgsConstructor @AllArgsConstructor
 public class LocationReviewResponseDto {
+    private int locationReviewId;
 
     private int rating;
     private String content;
