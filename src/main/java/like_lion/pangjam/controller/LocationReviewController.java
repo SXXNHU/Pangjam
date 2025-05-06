@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reviews")
+@RequestMapping("/location_reviews")
 @RequiredArgsConstructor
 public class LocationReviewController {
 
