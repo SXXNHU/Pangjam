@@ -1,5 +1,6 @@
 package like_lion.pangjam.controller;
 
+import like_lion.pangjam.dto.global.SliceResponseDto;
 import like_lion.pangjam.dto.locationReview.LocationReviewRequestDto;
 import like_lion.pangjam.dto.locationReview.LocationReviewResponseDto;
 import like_lion.pangjam.service.LocationReviewService;
@@ -25,12 +26,21 @@ public class LocationReviewController {
 
     //리뷰 전체 조회
     @GetMapping("/{locationId}")
-    public ResponseEntity<Slice<LocationReviewResponseDto>> getLocationReviews(@PathVariable int locationId,
+    public ResponseEntity<SliceResponseDto<LocationReviewResponseDto>> getLocationReviews(@PathVariable int locationId,
                                                                                @RequestParam(defaultValue = "0") int page,
                                                                                @RequestParam(defaultValue = "15") int size) {
         Pageable pageable = PageRequest.of(page,size);
-        Slice<LocationReviewResponseDto> locationReviews = locationReviewService.getLocationReviews(locationId, pageable );
-        return ResponseEntity.ok(locationReviews);
+
+        Slice<LocationReviewResponseDto> locationReviewSlice = locationReviewService.getLocationReviews(locationId, pageable);
+
+        SliceResponseDto<LocationReviewResponseDto> response = SliceResponseDto.of(
+                locationReviewSlice.getContent(),
+                locationReviewSlice.hasNext(),
+                page,
+                size
+        );
+
+        return ResponseEntity.ok(response);
     }
 
 }
