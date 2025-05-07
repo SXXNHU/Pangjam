@@ -16,7 +16,7 @@ public class ReviewConverter {
                 .build();
     }
 
-    public static ReviewResponseDto toReviewRequestDto(Review review) {
+    public static ReviewResponseDto toReviewResponseDto(Review review) {
         return ReviewResponseDto.builder()
                 .reviewId(review.getReviewId())
                 .nickname(review.getNickname())
