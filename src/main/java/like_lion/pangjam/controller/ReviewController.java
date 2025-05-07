@@ -6,6 +6,7 @@ import like_lion.pangjam.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +27,11 @@ public class ReviewController {
 
     //리뷰 전체 조회
     @GetMapping
-    public ResponseEntity<List<ReviewResponseDto>> getReviews(int reviewId,
+    public ResponseEntity<Slice<ReviewResponseDto>> getReviews(
                                                         @RequestParam(defaultValue = "0") int page,
                                                         @RequestParam(defaultValue = "15") int size) {
 
         Pageable pageable = PageRequest.of(page,size);
-        List<ReviewResponseDto> reviews = reviewService.getReviews(reviewId, pageable);
-        return ResponseEntity.ok(reviews);
+        return ResponseEntity.ok(reviewService.getReviews(pageable));
     }
 }

@@ -7,6 +7,7 @@ import like_lion.pangjam.repository.ReviewRepository;
 import like_lion.pangjam.utility.ReviewConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,17 +24,13 @@ public class ReviewService {
         Review review = ReviewConverter.toEntity(reviewRequestDto);
         Review savedReview = reviewRepository.save(review);
 
-        return ReviewConverter.toReviewRequestDto(savedReview);
+        return ReviewConverter.toReviewResponseDto(savedReview);
     }
 
 
     //리뷰 전체 조회
-    public List<ReviewResponseDto> getReviews(int reviewId, Pageable pageable)
-    {
-        List<Review> reviews = reviewRepository.findAll();
-
-        return reviews.stream()
-                .map(ReviewConverter::toReviewRequestDto)
-                .toList();
+    public Slice<ReviewResponseDto> getReviews(Pageable pageable) {
+        Slice<Review> reviews = reviewRepository.findAll(pageable);
+        return reviews.map(ReviewConverter::toReviewResponseDto);
     }
 }

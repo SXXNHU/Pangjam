@@ -6,10 +6,9 @@ import like_lion.pangjam.service.LocationReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/location_reviews")
@@ -26,11 +25,11 @@ public class LocationReviewController {
 
     //리뷰 전체 조회
     @GetMapping("/{locationId}")
-    public ResponseEntity<List<LocationReviewResponseDto>> getLocationReviews(@PathVariable int locationId,
-                                                                        @RequestParam(defaultValue = "0") int page,
-                                                                        @RequestParam(defaultValue = "15") int size) {
+    public ResponseEntity<Slice<LocationReviewResponseDto>> getLocationReviews(@PathVariable int locationId,
+                                                                               @RequestParam(defaultValue = "0") int page,
+                                                                               @RequestParam(defaultValue = "15") int size) {
         Pageable pageable = PageRequest.of(page,size);
-        List<LocationReviewResponseDto> locationReviews = locationReviewService.getLocationReviews(locationId, pageable );
+        Slice<LocationReviewResponseDto> locationReviews = locationReviewService.getLocationReviews(locationId, pageable );
         return ResponseEntity.ok(locationReviews);
     }
 

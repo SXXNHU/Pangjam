@@ -34,7 +34,7 @@ public Slice<LocationResponseDto.LocationInfo> getAllLocation(Integer lastLocati
             
     return new SliceImpl<>(
             locationSlice.getContent().stream()
-                    .map(location -> LocationConverter.toLocationInfo(location))
+                    .map(LocationConverter::toLocationInfo)
                     .collect(Collectors.toList()),
             pageRequest,
             locationSlice.hasNext()

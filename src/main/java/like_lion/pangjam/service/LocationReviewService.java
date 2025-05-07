@@ -9,6 +9,7 @@ import like_lion.pangjam.repository.LocationReviewRepository;
 import like_lion.pangjam.utility.LocationReviewConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,14 +34,11 @@ public class LocationReviewService {
     }
 
     //리뷰 전체 조회
-    public List<LocationReviewResponseDto> getLocationReviews(int locationId, Pageable pageable)
+    public Slice<LocationReviewResponseDto> getLocationReviews(int locationId, Pageable pageable)
     {
         Location location = locationRepository.findByLocationId(locationId);
-        List<LocationReview> locationReviews = locationReviewRepository.findByLocation_LocationId(locationId);
-
-        return locationReviews.stream()
-                .map(LocationReviewConverter::toLocationReviewResponseDto)
-                .toList();
+        Slice<LocationReview> locationReviews = locationReviewRepository.findByLocation_LocationId(locationId);
+        return locationReviews.map(LocationReviewConverter::toLocationReviewResponseDto);
     }
 
 
