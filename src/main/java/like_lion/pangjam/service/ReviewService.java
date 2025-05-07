@@ -31,6 +31,7 @@ public class ReviewService {
     //리뷰 전체 조회
     public Slice<ReviewResponseDto> getReviews(Pageable pageable) {
         Slice<Review> reviews = reviewRepository.findAll(pageable);
+
         return reviews.map(ReviewConverter::toReviewResponseDto);
     }
 }
