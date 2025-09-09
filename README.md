@@ -1,81 +1,43 @@
-# Pangjam  
-## A Junior Developer’s Journey with the Pangjam Project
+# Pangjam
 
-Pangjam is a web application that allows users to explore various restaurant reviews and write their own reviews. The platform focuses on providing useful information about restaurants and allows users to share their opinions through ratings and reviews.
-
----
-
-## Project Overview
-
-Pangjam is a web application that provides users with **restaurant information** and a **review system**. It helps users to discover new places to eat, share their experiences, and browse reviews. The app is designed with a user-friendly interface and fast response time to provide an optimal user experience.
+맛집 정보를 발견하고, 리뷰로 연결하는 로컬 미식 플랫폼
+**“Pangjam” 누구나 가볍게 남기는 별점·후기 기반 식당 커뮤니티**
 
 ---
 
-## Key Features
+## 개요
 
-### **Restaurant Information**
-
-- **View All Restaurants**
-  - Displays **name, phone number, category**, and **average rating** of restaurants.
-  - Sorted by default in **highest rating order** to recommend restaurants.
-  - **Infinite scroll** functionality to explore more restaurants easily.
-
-- **View Restaurants by Category**
-  - Users can filter and search restaurants by **category**.
-
-- **Search Restaurants by Name**
-  - Users can search for specific restaurants by name.
-
-- **Restaurant Details**
-  - Displays detailed restaurant information such as **name, address, distance, average rating**, and **category**.
-  - Reviews are sorted in the latest order, and users can view them along with restaurant details.
+디테일한 식당 정보와 생생한 이용자 리뷰를 한곳에서.
+로그인 없이 자동 생성되는 닉네임으로, 부담 없이 별점과 후기를 남길 수 있습니다.
+> **Pangjam**은 이러한 특징들을 가지고, 사용자의 탐색 경험을 끌어올린 **KWU 맛집 리뷰 플랫폼**입니다.
 
 ---
 
-### **Restaurant Reviews**
+## 핵심 기능
 
-- **View All Reviews**
-  - **Infinite scroll** for browsing all reviews.
+### 식당 탐색/정보
 
-- **View Top Reviews**
-  - Displays the **top 5 latest reviews**.
-  - Provides **rating statistics** showing how reviews are distributed across different ratings.
+- 전체 식당 조회: 이름 · 전화번호 · 카테고리 · 평균 평점 기반 정렬 제공
 
-- **Write a Review**
-  - Users can leave reviews with **ratings** (1 to 5 stars).
-  - The **average rating** is automatically updated after each new review is added.
+- 리스트 조회 시 무한 스크롤 지원
 
----
+- 카테고리 및 상호명 검색 지원
 
-### **School Meal Reviews**
+- 식당 상세 조회: 상호명 · 주소 · 거리 · 평균 평점 · 카테고리 · 리뷰
 
-- **View All School Meal Reviews**
-  - Users can browse all reviews for school meals with infinite scroll.
+- 업장의 평점 분포를 보여주는 통계 제공
 
-- **Write a School Meal Review**
-  - Users can rate the school meals and provide a review with a **rating** from 1 to 5 stars.
+- 리뷰 작성 지원 : 별점 + 텍스트
+- 
+- 닉네임 자동 생성(비로그인 서비스 이용)
 
----
 
-### **Nickname Generation**
+## 기술 스택
 
-- When writing a review, a **nickname** is automatically generated for users, so they don’t need to log in.
+- **언어/프레임워크**: React.js, Spring Boot
+- **DB**: MySQL
+- **버전관리**: Git, GitHub
+- **CI/CD**: GitHub Actions
+- **배포**: Docker
 
----
-
-## Tech Stack
-
-- **Frontend**: React.js  
-- **Backend**: Spring Boot  
-- **Database**: MySQL  
-- **Version Control**: Git, GitHub  
-- **CI/CD**: GitHub Actions  
-- **Deployment**: Docker
-
----
-
-## Running the Project Locally
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/SXXNHU/Pangjam.git
+비로그인 닉네임 생성으로 진입장벽 최소화
